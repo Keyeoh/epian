@@ -1,0 +1,19 @@
+Package: epian
+Type: Package
+Title: Common annotation functions employed in the EpiLab
+Version: 0.1.0
+Date: 2017-08-17
+Authors@R: c(
+  person("Gustavo", "Fernandez", email = "fernandezgustavo@uniovi.es", 
+    role = c("cre", "aut"))
+  )
+Description: This package is a common placeholder for some functions that are
+    very often used in our lab in order to annotate or characterize results
+    from our experiments. Its goal is to be very portable and reproducible, and
+    thus is based on precomputed annotation tables. 
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Depends:
+  R (>= 2.10)
+RoxygenNote: 6.0.1
