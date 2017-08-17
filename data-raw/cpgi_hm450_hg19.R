@@ -5,13 +5,11 @@ library(dplyr)
 library(FDb.InfiniumMethylation.hg19)
 library(purrr)
 library(readr)
-library(tibble)
-library(tidyr)
 
 # Get the CpG Islands definition ===============================================
 data(hg19.islands)
 
-cpgi_regions <- list(
+cpgi_regions = list(
   'N_Shelf' = flank(shift(hg19.islands, -2000), 2000),
   'S_Shelf' = flank(shift(hg19.islands, 2000), 2000, start = FALSE),
   'N_Shore' = flank(hg19.islands, 2000),
@@ -23,12 +21,10 @@ cpgi_regions <- list(
 hm450 = get450k()
 
 # Compute the annotation table =================================================
-cpgi_hm450_hg19 = map(
-  cpgi_regions, ~ subsetByOverlaps(hm450, .x) %>%
-    names()) %>%
-  enframe(name = 'CPGI_Status', value = 'Probe_ID') %>%
-  unnest(Probe_ID) %>%
-  dplyr::select(Probe_ID, CPGI_Status)
+cpgi_hm450_hg19 = map_df(cpgi_regions, ~ countOverlaps(hm450, .x) > 0) %>%
+  mutate(Open_Sea = !reduce(., ~ .x | .y)) %>%
+  mutate(Probe_ID = names(hm450)) %>%
+  dplyr::select(Probe_ID, CGI, N_Shore, S_Shore, N_Shelf, S_Shelf, Open_Sea)
 
 # Store results ================================================================
 write_tsv(cpgi_hm450_hg19, path = 'data-raw/cpgi_hm450_hg19.tsv.gz')
