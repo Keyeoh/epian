@@ -28,4 +28,4 @@ cpgi_hm450_hg19 = map_df(cpgi_regions, ~ countOverlaps(hm450, .x) > 0) %>%
 
 # Store results ================================================================
 write_tsv(cpgi_hm450_hg19, path = 'data-raw/cpgi_hm450_hg19.tsv.gz')
-devtools::use_data(cpgi_hm450_hg19, overwrite = TRUE)
+# devtools::use_data(cpgi_hm450_hg19, overwrite = TRUE)
