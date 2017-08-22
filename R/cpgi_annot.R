@@ -73,7 +73,7 @@ cpgi_annot = function(
     )
 
     test_fs = list(
-      chisq = chisq.test,
+      chisq = function(xx) chisq.test(xx, simulate.p.value = TRUE),
       fisher = fisher.test
     )
 
