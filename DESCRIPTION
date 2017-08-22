@@ -21,3 +21,4 @@ Imports:
   dplyr,
   tidyr
 RoxygenNote: 6.0.1
+Suggests: testthat
