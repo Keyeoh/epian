@@ -1,11 +1,3 @@
-# .onLoad = function(libname, pkgname) {
-#   data(
-#     'cpgi_hm450_hg19',
-#     package = pkgname,
-#     envir = parent.env(environment())
-#   )
-# }
-
 # Declare global variables =====================================================
 if(getRversion() >= "2.15.1")  {
   utils::globalVariables(c(
